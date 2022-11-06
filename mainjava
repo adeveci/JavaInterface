@@ -1,0 +1,24 @@
+package oopWithNlayeredApp;
+
+import java.util.List;
+
+import oopWithNlayeredApp.Bussiness.ProductManager;
+import oopWithNlayeredApp.Entities.Product;
+import oopWithNlayeredApp.core.logging.DatabaseLogger;
+import oopWithNlayeredApp.core.logging.FileLogger;
+import oopWithNlayeredApp.core.logging.Logger;
+import oopWithNlayeredApp.core.logging.MailLogger;
+import oopWithNlayeredApp.dataAccess.HibernateProductDao;
+import oopWithNlayeredApp.dataAccess.JdbcProductDao;
+
+public class main {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		Product product1 = new Product(1,"iPhone XR",19000);
+		Logger[] loggers = {new DatabaseLogger(),new MailLogger()};
+		ProductManager productManager=new ProductManager(new HibernateProductDao(),loggers);
+		productManager.add(product1);
+	}
+
+}
